@@ -11,6 +11,7 @@ export default {
     return !isNaN(+params.id)
   },
   asyncData ({ params, env, error }) {
+    console.log(params.id);
     let p = params.id.split('-');
     let id = p[0];
     const user = env.users.find(user => String(user.id) === id)
