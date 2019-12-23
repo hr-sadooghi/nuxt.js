@@ -2,40 +2,38 @@
   <div class="container">
     <div class="left">
       <h2>
-        <NuxtLink to="/">
-          Players
-        </NuxtLink>
+        <NuxtLink to="/">Players</NuxtLink>
       </h2>
       <ul class="players">
         <li v-for="user in users" :key="user.id">
-          <NuxtLink :to="'/'+user.id">
-            {{ user.name }}
-          </NuxtLink>
+          <NuxtLink :to="'/'+user.id+'-'+user.name.split(' ').join('-')">{{ user.name }}</NuxtLink>
         </li>
       </ul>
     </div>
     <div class="right">
-      <NuxtChild :key="$route.params.id" />
+      <NuxtChild :key="$route.params.id"/>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  asyncData ({ env }) {
-    return { users: env.users }
+  asyncData({ env }) {
+    return { users: env.users };
   }
-}
+};
 </script>
 
 <style scoped>
-.page-enter-active, .page-leave-active {
-  transition: opacity .4s, transform .4s;
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.4s, transform 0.4s;
   transform-style: preserve-3d;
   backface-visibility: hidden;
   opacity: 1;
 }
-.page-enter, .page-leave-active {
+.page-enter,
+.page-leave-active {
   opacity: 0.5;
   transform: rotateY(100deg);
 }
